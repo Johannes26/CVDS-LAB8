@@ -42,8 +42,8 @@
     <result property='direccion' column='direccion'/>
     <result property='email' column='email'/>  
     <result property='vetado' column='vetado'/> 
-    <collection property='rentados' ofType='ItemRentado'></collection>
-</resultMap>
+    <collection property='rentados' ofType='ItemRentado' resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemRentadoMapper.ItemRentadoResult"></collection>
+	</resultMap>
 
           	
 </mapper>

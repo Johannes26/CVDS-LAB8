@@ -4,17 +4,10 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="edu.eci.cvds.sampleprj.dao.mybatis.mappers.TipoItemMapper">
-	<resultMap type='Item' id='ItemResult'>
-    <id property='id' column='id'/>
-    <result property='nombre' column='nombre'/>
-    <result property='descripcion' column='descripcion'/>
-    <result property='fechaLanzamiento' column='fechalanzamiento'/>
-    <result property='tarifaxDia' column='tarifaxdia'/>  
-    <result property='formatoRenta' column='formatorenta'/>  
-    <result property='genero' column='genero'></result>
-    <association property="tipo" javaType="TipoItem" columnPrefix='tipoitem_' resultMap='edu.eci.cvds.sampleprj.dao.mybatis.mappers.TipoItemMapper.TipoItemResult'></association> 
-	</resultMap>
-    
-
-                
+	<resultMap type='TipoItem' id='TipoItemResult'>
+         <id property='id' column='id'/>
+         <result property='descripcion' column='descripcion'/>
+         <collection property='items' ofType='Item' resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemMapper.ItemResult"></collection>
+ 	</resultMap>
+         
 </mapper>

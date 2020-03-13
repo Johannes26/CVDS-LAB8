@@ -37,10 +37,10 @@ public class JDBCExample {
 
 	public static void main(String args[]){
         try {
-            String url="jdbc:mysql://HOST:3306/BD";
+            String url="jdbc:mysql://desarrollo.is.escuelaing.edu.co:3306/bdprueba";
             String driver="com.mysql.jdbc.Driver";
-            String user="USER";
-            String pwd="PWD";
+            String user="bdprueba";
+            String pwd="prueba2019";
                         
             Class.forName(driver);
             Connection con=DriverManager.getConnection(url,user,pwd);

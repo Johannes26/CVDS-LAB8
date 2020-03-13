@@ -86,8 +86,14 @@ public class JDBCExample {
         //Crear preparedStatement
         //Asignar parámetros
         //usar 'execute'
-
-        
+    	
+    	String sql = "insert into ORD_PRODUCTOS (codigo,nombre,precio)"+" values (?,?,?)";
+    	preparedSt = con.prepareStatement(sql);
+    	preparedSt.setInt(1, codigo);
+    	preparedSt.setString(2, nombre);
+    	preparedSt.setInt(3, precio);
+    	
+    	preparedSt.execute();
         con.commit();
         
     }

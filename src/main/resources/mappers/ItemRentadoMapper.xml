@@ -8,7 +8,7 @@
      <id property='id' column='id'/>
      <result property='fechainiciorenta' column='fechainiciorenta'/>
      <result property='fechafinrenta' column='fechafinrenta'/>
-     <association property="cliente" javaType="Cliente" ></association>
-     <association property="item" javaType="Item" ></association>
+     <association property="cliente" javaType="Cliente" columnPrefix="c_" ></association>
+     <association property="item" javaType="Item" columnPrefix="i_" ></association>
      </resultMap>
 </mapper>

@@ -7,7 +7,7 @@
 	<resultMap type='TipoItem' id='TipoItemResult'>
          <id property='id' column='id'/>
          <result property='descripcion' column='descripcion'/>
-         <collection property='items' ofType='Item' resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemMapper.ItemResult"></collection>
+         <collection property='items' ofType='Item' resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemMapper.ItemResult" columnPrefix="i_"></collection>
  	</resultMap>
          
 </mapper>

@@ -21,12 +21,17 @@ package edu.eci.cvds.samples.services.client;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ClienteMapper;
+import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemMapper;
 
 /**
  *
@@ -58,16 +63,32 @@ public class MyBatisExample {
      * Programa principal de ejempo de uso de MyBATIS
      * @param args
      * @throws SQLException 
+     * @throws ParseException 
      */
-    public static void main(String args[]) throws SQLException {
+    public static void main(String args[]) throws SQLException, ParseException {
     	
         SqlSessionFactory sessionfact = getSqlSessionFactory();
 
         SqlSession sqlss = sessionfact.openSession();
-
+        ItemMapper im= sqlss.getMapper(ItemMapper.class);
         ClienteMapper cm= sqlss.getMapper(ClienteMapper.class);
+        
+        System.out.println("Consultar Clientes");
         System.out.println(cm.consultarClientes());
-
+        System.out.println("");
+        System.out.println("Consultar Cliente");
+        System.out.println(cm.consultarCliente(0));
+        System.out.println("");
+        //System.out.println("Agregar Item Rentado");
+        //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+		//cm.agregarItemRentadoACliente(0, 2132577, sdf.parse("3999-01-11") , sdf.parse("4000-01-30"));
+        System.out.println("Consultar items");
+        System.out.println(im.consultarItems());
+        System.out.println(" ");
+        //System.out.println("Consultar items por id ");
+        //System.out.println(im.consultarItem(0));
+        //System.out.println(" ");
+        
         sqlss.commit();
         
         

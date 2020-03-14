@@ -8,7 +8,7 @@ import edu.eci.cvds.samples.entities.Cliente;
 
 /**
  *
- * @author 2106913
+ * 
  */
 public interface ClienteMapper {
     

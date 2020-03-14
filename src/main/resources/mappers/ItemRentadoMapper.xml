@@ -8,7 +8,6 @@
      <id property='id' column='id'/>
      <result property='fechainiciorenta' column='fechainiciorenta'/>
      <result property='fechafinrenta' column='fechafinrenta'/>
-     <association property="cliente" javaType="Cliente" columnPrefix="c_" ></association>
-     <association property="item" javaType="Item" columnPrefix="i_" ></association>
+     <association property="item" javaType="Item" resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemMapper.ItemResult" columnPrefix="i_" ></association>
      </resultMap>
 </mapper>

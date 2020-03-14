@@ -117,14 +117,14 @@ public class JDBCExample {
         //Sacar resultados del ResultSet
         //Llenar la lista y retornarla
         
-        String sql = "select nombrePedido from ORD_PRODUCTOS p,ORD_DETALLE_PEDIDO d where p.codigo = d.producto_fk and d.pedido_fk = ?";
+        String sql = "select p.nombre from ORD_PRODUCTOS p,ORD_DETALLE_PEDIDO d where p.codigo = d.producto_fk and d.pedido_fk = ?";
         preparedSt = con.prepareStatement(sql);
         preparedSt.setInt(1, codigoPedido);
         
         ResultSet rs = preparedSt.executeQuery();
         
         while(rs.next()) {
-        	String nombre = rs.getString("nombrePedido");
+        	String nombre = rs.getString("nombre");
         	np.add(nombre);
         }
         
@@ -148,6 +148,7 @@ public class JDBCExample {
     	
     	String sql = "select SUM(precio*cantidad) AS costop from ORD_PRODUCTOS p, ORD_DETALLE_PEDIDO d Where d.producto_fk=p.codigo and d.pedido_fk=?";
     	preparedSt = con.prepareStatement(sql);
+    	preparedSt.setInt(1, codigoPedido);
     	
     	ResultSet rs = preparedSt.executeQuery();
         

@@ -33,6 +33,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ClienteMapper;
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemMapper;
 import edu.eci.cvds.samples.entities.Item;
+import edu.eci.cvds.samples.entities.TipoItem;
 
 /**
  *
@@ -81,13 +82,14 @@ public class MyBatisExample {
         System.out.println(cm.consultarCliente(102465867));
         System.out.println("");
         //Agregar Item Rentado
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
-		cm.agregarItemRentadoACliente(101430, 1, sdf.parse("3999-01-11") , sdf.parse("4000-01-30"));
+        //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+		//cm.agregarItemRentadoACliente(102465867, 100, sdf.parse("3999-01-11") , sdf.parse("4000-01-30"));
 		
 		//Insertar Item
 		//im.insertarItem(new Item());
-		//Item A=new Item(null , 50, "PAN", "para crecer fuerte", null, 10, "c", "comida");
-		//im.insertarItem(A);
+		//TipoItem ti1=new TipoItem(1,"Video");
+		//Item i1=new Item(ti1, 1, "Los 4 Fantasticos", "Los 4 Fantásticos  es una película de superhéroes  basada en la serie de cómic homónima de Marvel.", java.sql.Date.valueOf("2005-06-08"), 2000, "DVD", "Ciencia Ficcion");
+		//im.insertarItem(i1);
 		
         System.out.println("Consultar items");
         System.out.println(im.consultarItems());

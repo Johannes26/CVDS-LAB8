@@ -20,6 +20,9 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
 
    @Inject
    private ItemDAO itemDAO;
+   
+   @Inject
+   private ClienteDAO clienteDAO;
 
    @Override
    public int valorMultaRetrasoxDia(int itemId) {
@@ -27,8 +30,12 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
    }
 
    @Override
-   public Cliente consultarCliente(long docu) throws ExcepcionServiciosAlquiler {
-       throw new UnsupportedOperationException("Not supported yet.");
+   public Cliente consultarCliente(int docu) throws ExcepcionServiciosAlquiler {
+	   try {
+		   return clienteDAO.load(docu);
+	   } catch (PersistenceException ex) {
+           throw new ExcepcionServiciosAlquiler("Error al consultar el cliente "+docu,ex);
+       }
    }
 
    @Override
@@ -77,7 +84,13 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
 
    @Override
    public void registrarCliente(Cliente c) throws ExcepcionServiciosAlquiler {
-       throw new UnsupportedOperationException("Not supported yet.");
+	   
+	   try {
+		   ItemRentado a = c.getRentados().get(0);
+		   clienteDAO.save((int)c.getDocumento(),a.getId(),a.getFechainiciorenta(), a.getFechafinrenta());
+	   } catch (PersistenceException ex) {
+		   throw new ExcepcionServiciosAlquiler("Error al consultar el item "+c.getDocumento(),ex);
+	   }
    }
 
    @Override
@@ -91,7 +104,11 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
    }
    @Override
    public void registrarItem(Item i) throws ExcepcionServiciosAlquiler {
-       throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	   try {
+		   itemDAO.save(i);
+	   } catch (PersistenceException ex) {
+		   throw new ExcepcionServiciosAlquiler("Error al consultar el item "+i.getId(),ex);
+	   }
    }
 
    @Override

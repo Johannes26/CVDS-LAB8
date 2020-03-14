@@ -10,7 +10,7 @@ import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ClienteMapper;
 import edu.eci.cvds.samples.entities.Cliente;
 
 
-public class MyBatisClienteDAO implements ClienteDAO{
+public class MyBATISClienteDAO implements ClienteDAO{
 
 		  @Inject
 		  private ClienteMapper ClienteMapper;    

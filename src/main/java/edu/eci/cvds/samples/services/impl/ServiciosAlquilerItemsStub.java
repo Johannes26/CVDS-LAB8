@@ -44,7 +44,7 @@ public class ServiciosAlquilerItemsStub implements ServiciosAlquiler {
    }
 
    @Override
-   public Cliente consultarCliente(long docu) throws ExcepcionServiciosAlquiler {
+   public Cliente consultarCliente(int docu) throws ExcepcionServiciosAlquiler {
        Cliente c=null;
        if(clientes.containsKey(docu)){
            c=clientes.get(docu);
@@ -207,12 +207,12 @@ public class ServiciosAlquilerItemsStub implements ServiciosAlquiler {
        tipositems.put(2,ti2);
        tipositems.put(3,ti3);
 
-       Item i1=new Item(ti1, 1, "Los 4 Fantasticos", "Los 4 Fantásticos  es una película de superhéroes  basada en la serie de cómic homónima de Marvel.", java.sql.Date.valueOf("2005-06-08"), 2000, "DVD", "Ciencia Ficcion");
+       Item i1=new Item(ti1, 1, "Los 4 Fantasticos", "Los 4 Fantï¿½sticos  es una pelï¿½cula de superhï¿½roes  basada en la serie de cï¿½mic homï¿½nima de Marvel.", java.sql.Date.valueOf("2005-06-08"), 2000, "DVD", "Ciencia Ficcion");
        Item i2=new Item(ti2, 2, "Halo 3", "Halo 3 es un videojuego de disparos en primera persona desarrollado por Bungie Studios.", java.sql.Date.valueOf("2007-09-08"), 3000, "DVD", "Shooter");
-       Item i3=new Item(ti3, 3, "Thriller", "Thriller es una canción interpretada por el cantante estadounidense Michael Jackson, compuesta por Rod Temperton y producida por Quincy Jones.", java.sql.Date.valueOf("1984-01-11"), 2000, "DVD", "Pop");
-       Item i4=new Item(ti1, 4, "Los 4 Fantasticos", "Los 4 Fantásticos  es una película de superhéroes  basada en la serie de cómic homónima de Marvel.", java.sql.Date.valueOf("2005-06-08"), 2000, "DVD", "Ciencia Ficcion");
+       Item i3=new Item(ti3, 3, "Thriller", "Thriller es una canciï¿½n interpretada por el cantante estadounidense Michael Jackson, compuesta por Rod Temperton y producida por Quincy Jones.", java.sql.Date.valueOf("1984-01-11"), 2000, "DVD", "Pop");
+       Item i4=new Item(ti1, 4, "Los 4 Fantasticos", "Los 4 Fantï¿½sticos  es una pelï¿½cula de superhï¿½roes  basada en la serie de cï¿½mic homï¿½nima de Marvel.", java.sql.Date.valueOf("2005-06-08"), 2000, "DVD", "Ciencia Ficcion");
        Item i5=new Item(ti2, 5, "Halo 3", "Halo 3 es un videojuego de disparos en primera persona desarrollado por Bungie Studios.", java.sql.Date.valueOf("2007-09-08"), 3000, "DVD", "Shooter");
-       Item i6=new Item(ti3, 6, "Thriller", "Thriller es una canción interpretada por el cantante estadounidense Michael Jackson, compuesta por Rod Temperton y producida por Quincy Jones.", java.sql.Date.valueOf("1984-01-11"), 2000, "DVD", "Pop");
+       Item i6=new Item(ti3, 6, "Thriller", "Thriller es una canciï¿½n interpretada por el cantante estadounidense Michael Jackson, compuesta por Rod Temperton y producida por Quincy Jones.", java.sql.Date.valueOf("1984-01-11"), 2000, "DVD", "Pop");
        //items.put(1, i1);
        //items.put(2, i2);
        //items.put(3, i3);

@@ -34,6 +34,8 @@ import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ClienteMapper;
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemMapper;
 import edu.eci.cvds.samples.entities.Item;
 import edu.eci.cvds.samples.entities.TipoItem;
+import edu.eci.cvds.samples.services.ExcepcionServiciosAlquiler;
+import edu.eci.cvds.samples.services.ServiciosAlquilerFactory;
 
 /**
  *
@@ -66,8 +68,9 @@ public class MyBatisExample {
      * @param args
      * @throws SQLException 
      * @throws ParseException 
+     * @throws ExcepcionServiciosAlquiler 
      */
-    public static void main(String args[]) throws SQLException, ParseException {
+    public static void main(String args[]) throws SQLException, ParseException, ExcepcionServiciosAlquiler {
     	
         SqlSessionFactory sessionfact = getSqlSessionFactory();
 
@@ -98,6 +101,11 @@ public class MyBatisExample {
         System.out.println(im.consultarItem(1));
         System.out.println(" ");
         
+        System.out.println(" ");
+        System.out.println("Prueba Implementacion Factory");
+        ServiciosAlquilerFactory prueba = ServiciosAlquilerFactory.getInstance();
+        System.out.println(prueba.getServiciosAlquiler().consultarCliente(101430));
+        System.out.println(prueba.getServiciosAlquiler().consultarItem(10));
         sqlss.commit();
         
         

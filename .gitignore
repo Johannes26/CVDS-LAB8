@@ -1,3 +1,9 @@
 /target/
 .#*
 *.log
+.settings
+.DS_Store
+.classpath
+.project
+
+

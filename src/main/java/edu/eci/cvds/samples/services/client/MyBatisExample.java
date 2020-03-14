@@ -32,6 +32,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ClienteMapper;
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemMapper;
+import edu.eci.cvds.samples.entities.Item;
 
 /**
  *
@@ -77,17 +78,23 @@ public class MyBatisExample {
         System.out.println(cm.consultarClientes());
         System.out.println("");
         System.out.println("Consultar Cliente");
-        System.out.println(cm.consultarCliente(0));
+        System.out.println(cm.consultarCliente(102465867));
         System.out.println("");
-        //System.out.println("Agregar Item Rentado");
-        //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
-		//cm.agregarItemRentadoACliente(0, 2132577, sdf.parse("3999-01-11") , sdf.parse("4000-01-30"));
+        //Agregar Item Rentado
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+		cm.agregarItemRentadoACliente(101430, 1, sdf.parse("3999-01-11") , sdf.parse("4000-01-30"));
+		
+		//Insertar Item
+		//im.insertarItem(new Item());
+		//Item A=new Item(null , 50, "PAN", "para crecer fuerte", null, 10, "c", "comida");
+		//im.insertarItem(A);
+		
         System.out.println("Consultar items");
         System.out.println(im.consultarItems());
         System.out.println(" ");
-        //System.out.println("Consultar items por id ");
-        //System.out.println(im.consultarItem(0));
-        //System.out.println(" ");
+        System.out.println("Consultar items por id ");
+        System.out.println(im.consultarItem(1));
+        System.out.println(" ");
         
         sqlss.commit();
         

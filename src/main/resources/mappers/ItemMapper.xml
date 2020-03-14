@@ -36,8 +36,8 @@
         ti.descripcion as ti_descripcion
 
         FROM VI_ITEMS as i
-        left join VI_TIPOITEM as ti on i.TIPOITEM_id=ti.id;
-        WHERE i.id=#{iditem};
+        left join VI_TIPOITEM as ti on i.TIPOITEM_id=ti.id
+        WHERE i.id=#{iditem}
 
     </select>
     
@@ -47,13 +47,13 @@
 
 
 <resultMap type='Item' id='ItemResult'>
-    <id property='id' column='id'/>
-    <result property='nombre' column='nombre'/>
-    <result property='descripcion' column='descripcion'/>
-    <result property='fechaLanzamiento' column='fechalanzamiento'/>
-    <result property='tarifaxDia' column='tarifaxdia'/>  
-    <result property='formatoRenta' column='formatorenta'/>  
-    <result property='genero' column='genero'></result>
+    <id property='id' column='i_id'/>
+    <result property='nombre' column='i_nombre'/>
+    <result property='descripcion' column='i_descripcion'/>
+    <result property='fechaLanzamiento' column='i_fechalanzamiento'/>
+    <result property='tarifaxDia' column='i_tarifaxdia'/>  
+    <result property='formatoRenta' column='i_formatorenta'/>  
+    <result property='genero' column='i_genero'></result>
     <association property="tipo" javaType="TipoItem" resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.TipoItemMapper.TipoItemResult" columnPrefix="ti_" ></association>
     </resultMap>
     

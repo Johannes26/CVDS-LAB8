@@ -32,6 +32,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ClienteMapper;
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemMapper;
+import edu.eci.cvds.samples.entities.Cliente;
 import edu.eci.cvds.samples.entities.Item;
 import edu.eci.cvds.samples.entities.TipoItem;
 import edu.eci.cvds.samples.services.ExcepcionServiciosAlquiler;
@@ -102,10 +103,16 @@ public class MyBatisExample {
         System.out.println(" ");
         
         System.out.println(" ");
+        
         System.out.println("Prueba Implementacion Factory");
         ServiciosAlquilerFactory prueba = ServiciosAlquilerFactory.getInstance();
+        Cliente p=new Cliente("johan",2157333,"312097","calle wualavy","coronavirus.com");
+        prueba.getServiciosAlquiler().registrarCliente(p);
+        System.out.println(prueba.getServiciosAlquiler().consultarCliente(2157333));
         System.out.println(prueba.getServiciosAlquiler().consultarCliente(101430));
-        System.out.println(prueba.getServiciosAlquiler().consultarItem(10));
+        System.out.println(prueba.getServiciosAlquiler().consultarItem(99));
+        System.out.println(prueba.getServiciosAlquiler().consultarClientes());
+        
         sqlss.commit();
         
         

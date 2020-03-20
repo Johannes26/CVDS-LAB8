@@ -1,6 +1,7 @@
 package edu.eci.cvds.sampleprj.dao.mybatis;
 
 import java.util.Date;
+import java.util.List;
 
 import com.google.inject.Inject;
 
@@ -16,7 +17,7 @@ public class MyBATISClienteDAO implements ClienteDAO{
 		  private ClienteMapper ClienteMapper;    
 
 		  @Override
-		  public void save(int id,int idit,Date fechainicio,Date fechafin) throws PersistenceException{
+		  public void agregarItemRentadoACliente(long id,int idit,Date fechainicio,Date fechafin) throws PersistenceException{
 		  try{
 			  ClienteMapper.agregarItemRentadoACliente(id, idit, fechainicio, fechafin);
 		  }
@@ -26,13 +27,33 @@ public class MyBATISClienteDAO implements ClienteDAO{
 		  }
 
 		  @Override
-		  public Cliente load(int id) throws PersistenceException {
+		  public Cliente consultarCliente(long id) throws PersistenceException {
 		  try{
 		      return ClienteMapper.consultarCliente(id);
 		  }
 		  catch(org.apache.ibatis.exceptions.PersistenceException e){
 		      throw new PersistenceException("Error al consultar el Cliente "+ id , e);
 		  }
-
 		  }
+		  
+		  @Override
+		  public List<Cliente> consultarClientes() throws PersistenceException {
+		  try{
+		      return ClienteMapper.consultarClientes();
+		  }
+		  catch(org.apache.ibatis.exceptions.PersistenceException e){
+		      throw new PersistenceException("Error al consultar el Clientes " , e);
+		  }
+		  }
+		  
+		  @Override
+		  public void registrarCliente(long docu, String nombre, String telefono, String direccion, String email, boolean vetado) throws PersistenceException {
+		  try{
+		       ClienteMapper.registrarCliente(docu, nombre, telefono, direccion, email, vetado);
+		  }
+		  catch(org.apache.ibatis.exceptions.PersistenceException e){
+		      throw new PersistenceException("Error al consultar el Clientes " , e);
+		  }
+		  }
+		  
 }

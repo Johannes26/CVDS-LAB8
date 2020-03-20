@@ -13,6 +13,7 @@ import edu.eci.cvds.samples.entities.TipoItem;
 import edu.eci.cvds.samples.services.ExcepcionServiciosAlquiler;
 import edu.eci.cvds.samples.services.ServiciosAlquiler;
 import java.sql.Date;
+import java.util.Calendar;
 import java.util.List;
 
 @Singleton
@@ -32,7 +33,7 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
    @Override
    public Cliente consultarCliente(int docu) throws ExcepcionServiciosAlquiler {
 	   try {
-		   return clienteDAO.load(docu);
+		   return clienteDAO.consultarCliente(docu);
 	   } catch (PersistenceException ex) {
            throw new ExcepcionServiciosAlquiler("Error al consultar el cliente "+docu,ex);
        }
@@ -45,9 +46,14 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
 
    @Override
    public List<Cliente> consultarClientes() throws ExcepcionServiciosAlquiler {
+	   try {
+		   return clienteDAO.consultarClientes();
+	   }catch (PersistenceException ex) {
        throw new UnsupportedOperationException("Not supported yet.");
+	   }
    }
 
+   
    @Override
    public Item consultarItem(int id) throws ExcepcionServiciosAlquiler {
        try {
@@ -79,17 +85,23 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
 
    @Override
    public void registrarAlquilerCliente(Date date, long docu, Item item, int numdias) throws ExcepcionServiciosAlquiler {
-       throw new UnsupportedOperationException("Not supported yet.");
+	   try {
+		   //sumar dias
+		   Calendar calendar = Calendar.getInstance();
+		   calendar.setTime(date);
+		   calendar.add(Calendar.DAY_OF_YEAR, numdias);
+		   clienteDAO.agregarItemRentadoACliente(docu,item.getId(),date,calendar.getTime());
+	   	} catch (PersistenceException ex) {
+	   throw new UnsupportedOperationException("Not supported yet.");
+	   }
    }
 
    @Override
    public void registrarCliente(Cliente c) throws ExcepcionServiciosAlquiler {
-	   
 	   try {
-		   ItemRentado a = c.getRentados().get(0);
-		   clienteDAO.save((int)c.getDocumento(),a.getId(),a.getFechainiciorenta(), a.getFechafinrenta());
-	   } catch (PersistenceException ex) {
-		   throw new ExcepcionServiciosAlquiler("Error al consultar el item "+c.getDocumento(),ex);
+		   clienteDAO.registrarCliente(c.getDocumento(), c.getNombre(), c.getTelefono(), c.getDireccion(), c.getEmail(), c.isVetado());
+	   }catch(PersistenceException ex){
+	   throw new UnsupportedOperationException("Not supported yet.");
 	   }
    }
 

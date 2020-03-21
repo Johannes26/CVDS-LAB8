@@ -36,13 +36,13 @@ public interface ServiciosAlquiler {
    * @obj consultar el valor de la multa del alquiler, dado el id del item
    * alquilado hasta la fecha dada como parametro
    * @param iditem el codigo del item alquilado
-   * @param fechaDevolucion la fecha de devolucion del item
+   * @param date la fecha de devolucion del item
    * @return la multa en funcion del numero de dias de retraso. Si el item se
    * entrega en la fecha exacta de entrega, o antes, la multa sera cero.
    * @throws ExcepcionServiciosAlquiler si el item no existe o no esta
    * actualmente alquilado
    */
-   public abstract long consultarMultaAlquiler(int iditem, Date fechaDevolucion) throws ExcepcionServiciosAlquiler;
+   public abstract long consultarMultaAlquiler(int iditem, Date date) throws ExcepcionServiciosAlquiler;
 
    public abstract TipoItem consultarTipoItem(int id) throws ExcepcionServiciosAlquiler;
 

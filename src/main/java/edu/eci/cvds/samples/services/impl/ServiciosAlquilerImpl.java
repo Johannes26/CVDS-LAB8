@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import edu.eci.cvds.sampleprj.dao.ClienteDAO;
 import edu.eci.cvds.sampleprj.dao.ItemDAO;
+import edu.eci.cvds.sampleprj.dao.ItemRentadoDAO;
 import edu.eci.cvds.sampleprj.dao.PersistenceException;
 
 import edu.eci.cvds.samples.entities.Cliente;
@@ -24,6 +25,9 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
    
    @Inject
    private ClienteDAO clienteDAO;
+   
+   @Inject
+   private ItemRentadoDAO itemRentadoDAO;
 
    @Override
    public int valorMultaRetrasoxDia(int itemId) {
@@ -70,7 +74,19 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
 
    @Override
    public long consultarMultaAlquiler(int iditem, Date fechaDevolucion) throws ExcepcionServiciosAlquiler {
-       throw new UnsupportedOperationException("Not supported yet.");
+	   try{
+           ItemRentado itemren = itemRentadoDAO.load(iditem);
+           Item item = itemDAO.load(iditem);
+           if(item == null || itemren==null){
+               throw new ExcepcionServiciosAlquiler("No hay información de el item rentado: "+ iditem);
+           }
+           long multa = item.getTarifaxDia();
+           Date fechafinrenta = itemren.getFechafinrenta();
+           int dias=(int) ((fechaDevolucion.getTime()-fechafinrenta.getTime())/86400000);
+           return dias * multa;
+       } catch (PersistenceException ex) {
+    	   throw new ExcepcionServiciosAlquiler("Error al consultar items disponibles",ex);
+       }
    }
 
    @Override
@@ -101,7 +117,7 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
 	   try {
 		   clienteDAO.registrarCliente(c.getDocumento(), c.getNombre(), c.getTelefono(), c.getDireccion(), c.getEmail(), c.isVetado());
 	   }catch(PersistenceException ex){
-	   throw new UnsupportedOperationException("Not supported yet.");
+		   throw new ExcepcionServiciosAlquiler("Error al registrar cliente",ex);
 	   }
    }
 

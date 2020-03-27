@@ -108,19 +108,22 @@ public class MyBatisExample {
         ServiciosAlquilerFactory prueba = ServiciosAlquilerFactory.getInstance();
         //Cliente p=new Cliente("johann",2157329,"312097","calle wualavy","conavius.com");
         //prueba.getServiciosAlquiler().registrarCliente(p);
+        
         System.out.println(prueba.getServiciosAlquiler().consultarCliente(2157333));
         System.out.println(prueba.getServiciosAlquiler().consultarCliente(101430));
         System.out.println(prueba.getServiciosAlquiler().consultarItem(99));
         System.out.println(prueba.getServiciosAlquiler().consultarClientes()); 
         
         
-        
-        
-        
         java.util.Date d = new java.util.Date();  
         java.sql.Date date2 = new java.sql.Date(d.getTime());
-        prueba.getServiciosAlquiler().registrarAlquilerCliente(date2, 2157329,prueba.getServiciosAlquiler().consultarItem(99) , 5); 
-     
+        prueba.getServiciosAlquiler().registrarAlquilerCliente(date2, 2157333,prueba.getServiciosAlquiler().consultarItem(99) , 5); 
+        
+        System.out.println(prueba.getServiciosAlquiler().consultarItemR());
+        
+        
+
+        System.out.println("consultar");
         System.out.println(prueba.getServiciosAlquiler().consultarMultaAlquiler(99, date2));
         
         sqlss.commit();

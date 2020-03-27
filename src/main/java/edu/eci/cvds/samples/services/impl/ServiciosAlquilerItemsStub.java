@@ -43,6 +43,12 @@ public class ServiciosAlquilerItemsStub implements ServiciosAlquiler {
        return MULTA_DIARIA;
    }
 
+   
+   public List<ItemRentado> consultarItemR() throws ExcepcionServiciosAlquiler {
+	   throw new ExcepcionServiciosAlquiler("");
+   }
+   
+   
    @Override
    public Cliente consultarCliente(int docu) throws ExcepcionServiciosAlquiler {
        Cliente c=null;

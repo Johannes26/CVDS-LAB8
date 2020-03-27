@@ -5,9 +5,9 @@
   
 <mapper namespace="edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemRentadoMapper">
 	
-	 <select parameterType="map" id='getItemRentado' resultMap="ItemRentadoResult">
+	 <select parameterType="map" id="load" resultMap="ItemRentadoResult">
 			select
-			ir.id as id,
+			ir.id as ir_id,
 			ir.fechainiciorenta as ir_fechainiciorenta,
 			ir.fechafinrenta as ir_fechafinrenta,
 			i.id as i_id,
@@ -17,14 +17,18 @@
 			i.tarifaxdia as i_tarifaxdia,
 			i.formatorenta as i_formatorenta,
 			i.genero as i_genero,
-			ti.id as tipoIt_id,
-			ti.descripcion as tipoItem_descripcion
+			ti.id as ti_id,
+			ti.descripcion as ti_descripcion
 			FROM
 			VI_ITEMRENTADO as ir
 			join VI_ITEMS as i on ir.ITEMS_id=i.id
 			left join VI_TIPOITEM as ti on i.TIPOITEM_id=ti.id
 			WHERE #{idr}=ir.id
 	</select>
+	
+		<select parameterType="map" id="getItemsRentados" resultMap="ItemRentadoResult">
+			select * from VI_ITEMRENTADO
+		</select>
 	
      <resultMap type='ItemRentado' id='ItemRentadoResult'>
      <id property='id' column='ir_id'/>

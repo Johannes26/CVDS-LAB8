@@ -11,7 +11,7 @@ public interface ItemRentadoMapper {
 
     public List<ItemRentado> getItemsRentados();
 
-    public ItemRentado getItemRentado(@Param("idr")int id);
+    public ItemRentado load(@Param("idr")int id);
 
     public void addItemRentado(int cliid, int itemid, Date fechaini, Date fechafin);
 }

@@ -21,7 +21,7 @@ public class MyBATISItemRentadoDAO implements ItemRentadoDAO {
     @Override
     public ItemRentado load(int id) throws PersistenceException {
     	try {
-    		 return itemRentadoMapper.getItemRentado(id);
+    		 return itemRentadoMapper.load(id);
     	}catch(org.apache.ibatis.exceptions.PersistenceException e){
     	      throw new PersistenceException("Error al cargar el item "+id,e);
     	  } 

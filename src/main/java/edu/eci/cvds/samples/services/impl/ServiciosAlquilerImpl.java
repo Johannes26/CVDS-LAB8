@@ -43,9 +43,18 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
        }
    }
 
-   @Override
+   
    public List<ItemRentado> consultarItemsCliente(long idcliente) throws ExcepcionServiciosAlquiler {
-       throw new UnsupportedOperationException("Not supported yet.");
+	   throw new UnsupportedOperationException("Not supported yet.");
+   }
+   
+   
+   public List<ItemRentado> consultarItemR() throws ExcepcionServiciosAlquiler {
+	   try {
+	   return itemRentadoDAO.loadItems();
+	   }catch(PersistenceException ex) {
+		   throw new UnsupportedOperationException("Not supported yet.");
+	   }
    }
 
    @Override
@@ -61,7 +70,7 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
    @Override
    public Item consultarItem(int id) throws ExcepcionServiciosAlquiler {
        try {
-           return itemDAO.load(id);
+           return itemDAO.consultarItem(id);
        } catch (PersistenceException ex) {
            throw new ExcepcionServiciosAlquiler("Error al consultar el item "+id,ex);
        }
@@ -76,10 +85,7 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
    public long consultarMultaAlquiler(int iditem, Date fechaDevolucion) throws ExcepcionServiciosAlquiler {
 	   try{
            ItemRentado itemren = itemRentadoDAO.load(iditem);
-           Item item = itemDAO.load(iditem);
-           if(item == null || itemren==null){
-               throw new ExcepcionServiciosAlquiler("No hay información de el item rentado: "+ iditem);
-           }
+           Item item = itemDAO.consultarItem(iditem);
            long multa = item.getTarifaxDia();
            Date fechafinrenta = itemren.getFechafinrenta();
            int dias=(int) ((fechaDevolucion.getTime()-fechafinrenta.getTime())/86400000);
